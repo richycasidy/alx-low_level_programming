@@ -6,7 +6,7 @@
  * Return: Always 0 (Success)
  */
 
-innt main(void)
+int main(void)
 {
 	int i = 97;
 
