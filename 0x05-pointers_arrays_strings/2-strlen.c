@@ -1,18 +1,20 @@
-#include "main.h"
+#include "holberton.h"
 
 /**
-  * swap_int - Swaps the values of two integers
+  * _strlen - Returns the length of a string
+  * @s: String to count
   *
-  * @a: An integer to swap
-  * @b: Another integer to swap
-  *
-  * Return: void
+  * Return: String length
   */
-void swap_int(int *a, int *b)
+int _strlen(char *s)
 {
-	int aux;
+	int c = 0;
 
-	aux = *a;
-	*a = *b;
-	*b = aux;
+	for (; *s != '\0'; s++)
+	{
+		c++;
+	}
+
+	return (c);
 }
+{
