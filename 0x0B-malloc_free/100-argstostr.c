@@ -1,33 +1,54 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * _realloc - reallocates memory block using malloc and free
- * @ptr: pointer
- * @old_size: byte size to be allocated
- * @new_size: new size in bytes
- * Return: void
- */
-
-void *_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+  * argstostr - convert the params passed to the program to string
+  * @ac: the argument count
+  * @av: the argument vector
+  *
+  * Return: ...
+  */
+char *argstostr(int ac, char **av)
 {
-	if (ptr == NULL)
-	{
-		ptr = malloc(new_size);
-		return (ptr);
-	}
+	int ch = 0, i = 0, j = 0, k = 0;
+	char *s;
 
-	if (new_size == 0 && ptr != NULL)
-	{
-		free(ptr);
+	if (ac == 0 || av == NULL)
 		return (NULL);
+
+	while (i < ac)
+	{
+		while (av[i][j])
+		{
+			ch++;
+			j++;
+		}
+
+		j = 0;
+		i++;
 	}
 
-	if (new_size == old_size)
-		return (ptr);
-	free(ptr);
+	s = malloc((sizeof(char) * ch) + ac + 1);
 
-	ptr = malloc(new_size);
+	i = 0;
+	while (av[i])
+	{
+		while (av[i][j])
+		{
+			s[k] = av[i][j];
+			k++;
+			j++;
+		}
 
-	return (ptr);
+		s[k] = '\n';
+
+		j = 0;
+		k++;
+		i++;
+	}
+
+	k++;
+	s[k] = '\0';
+	return (s);
 }
