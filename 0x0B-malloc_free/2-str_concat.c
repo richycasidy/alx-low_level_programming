@@ -1,28 +1,53 @@
 #include "main.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /**
- * _calloc - allocates memory for an array
- * @nmemb: number of members
- * @size: number of bytes
- * Return: pointer to allocated memory corresponding with the string
- */
-
-void *_calloc(unsigned int nmemb, unsigned int size)
+  * str_concat - Concatenates two strings of any size
+  * @s1: the first string to concatenate
+  * @s2: the second string to concatenate
+  *
+  * Return: the two strings concatenated
+  */
+char *str_concat(char *s1, char *s2)
 {
-	void *arr;
-	unsigned int i;
-	char *k;
+	int i = 0, j = 0, k = 0, l = 0;
+	char *s;
 
-	if (nmemb == 0 || size == 0)
+	if (s1 == NULL)
+		s1 = "";
+
+	if (s2 == NULL)
+		s2 = "";
+
+	while (s1[i])
+		i++;
+
+	while (s2[j])
+		j++;
+
+	l = i + j;
+	s = malloc((sizeof(char) * l) + 1);
+
+	if (s == NULL)
 		return (NULL);
 
-	arr = malloc(size * nmemb);
-	if (arr == NULL)
-		return (NULL);
+	j = 0;
 
-	k = arr;
-	for (i = 0; i < nmemb * size; i++)
-		k[i] = 0;
-	return (arr);
+	while (k < l)
+	{
+		if (k <= i)
+			s[k] = s1[k];
+
+		if (k >= i)
+		{
+			s[k] = s2[j];
+			j++;
+		}
+
+		k++;
+	}
+
+	s[k] = '\0';
+	return (s);
 }
